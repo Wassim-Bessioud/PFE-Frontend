@@ -1,7 +1,8 @@
 pipeline {
     agent any
     
-     environment {     
+     environment {
+	GIT_CREDENTIALS_ID = 'github-token'
 	ANSIBLE_PLAYBOOK = 'ansible-deploy.yaml'
         NEXUS_VERSION = "nexus3"
         NEXUS_PROTOCOL = "http"
@@ -17,7 +18,7 @@ pipeline {
             steps {
                 // Checkout your source code from your Git repository
                 script {
-                    git branch: 'main', url: 'https://github.com/Wassim-Bessioud/PFE-Frontend.git'
+                    git branch: 'main', url: 'https://github.com/Wassim-Bessioud/PFE-Frontend.git' , credentialsId: "${GIT_CREDENTIALS_ID}"
                 }
             }
         }
